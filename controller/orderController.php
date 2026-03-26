@@ -57,11 +57,19 @@ if ($action === 'create') {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+        $errors = validateOrder($_POST);
+
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header("Location: orderController.php?action=create");
+            exit();
+        }
+
         $data = [
             'id_users' => $_SESSION['user_id'],
             'kategori_id' => $_POST['kategori_id'],
-            'nama_paket' => trim($_POST['nama_paket']),
-            'deskripsi_paket' => trim($_POST['deskripsi_paket']),
+            'nama_paket' => substr(trim($_POST['nama_paket']), 0, 40),
+            'deskripsi_paket' => substr(trim($_POST['deskripsi_paket']), 0, 300),
             'no_wa' => trim($_POST['no_wa']),
             'packing_khusus' => 'tidak'
         ];
@@ -85,6 +93,14 @@ if ($action === 'edit') {
     $id = intval($_GET['id'] ?? 0);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $errors = validateOrder($_POST);
+
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header("Location: orderController.php?action=edit&id=" . $id);
+            exit();
+        }
 
         $data = [
             'id_users' => $_SESSION['user_id'],

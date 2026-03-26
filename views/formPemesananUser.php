@@ -15,13 +15,24 @@ $isEdit = !empty($order);
 
         <h1><?= $isEdit ? "Edit" : "Tambah" ?> <span>Produk</span></h1>
 
+        <?php if (!empty($_SESSION['errors'])): ?>
+            <div style="color:red;">
+                <ul>
+                    <?php foreach ($_SESSION['errors'] as $e): ?>
+                        <li><?= htmlspecialchars($e) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php unset($_SESSION['errors']); ?>
+        <?php endif; ?>
+
         <form method="POST" action="../../controller/orderController.php?action=<?= $isEdit ? "edit&id=" . $order['id'] : "create" ?>">
 
             <label>Nama Paket</label><br>
-            <input type="text" 
-            name="nama_paket" 
-            maxlength="40"
-            value="<?= $isEdit ? htmlspecialchars($order['nama_paket']) : '' ?>" required>
+            <input type="text"
+                name="nama_paket"
+                maxlength="40"
+                value="<?= $isEdit ? htmlspecialchars($order['nama_paket']) : '' ?>" required>
             <br><br>
 
             <label>Kategori Barang</label><br>
