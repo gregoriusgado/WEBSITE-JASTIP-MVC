@@ -21,7 +21,7 @@ if (!isset($orders)) {
         <div class="admin-box">
             <h1>Hai Admin</h1>
             <p class="role">Role kamu: <b><?php echo $_SESSION['role']; ?></b></p>
-            <a href="admin/admin_panels.php">Masuk Panel Admin</a><br>
+            <a href="../views/admin/admin_panels.php">Masuk Panel Admin</a><br>
         </div>
     <?php endif; ?>
 
@@ -32,10 +32,10 @@ if (!isset($orders)) {
             <div class="logo">
                 <h2>Paket<span>Kamu</span></h2>
             </div>
-            <nav class="menu">
+            <nav class="menu"> -
                 <a class="active">Dashboard</a>
                 <a href="../controller/orderController.php?action=create">Form Pemesanan</a>
-                <a href="../../controller/orderController.php?action=index">Riwayat</a>
+                <a href="../controller/orderController.php?action=index">Riwayat</a>
                 <a href="">Kontak Wilayah</a>
                 <a href="">Tentang Kami</a>
                 <a href="../logout.php">Logout</a>
