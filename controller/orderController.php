@@ -71,7 +71,8 @@ if ($action === 'create') {
             'nama_paket' => substr(trim($_POST['nama_paket']), 0, 40),
             'deskripsi_paket' => substr(trim($_POST['deskripsi_paket']), 0, 300),
             'no_wa' => trim($_POST['no_wa']),
-            'packing_khusus' => 'tidak'
+            'packing_khusus' => 'tidak',
+            'status' => 'diproses'
         ];
 
         $orderModel->create($data);
