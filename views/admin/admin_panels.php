@@ -22,7 +22,7 @@ checkRole(['admin']); // hanya admin boleh
             <li><a href="admin_product_form.php">Form Product</a></li>
             <li><a href="../../controller/productController.php?action=index">List Barang</a></li>
             <li><a href="../dashboard.php">Dashboard Utama</a></li>
-            <li><a href="#">Reports</a></li>
+            <li><a href="../../controller/updateStatusController.php?action=index">Reports</a></li>
         </ul>
     </nav>
     <main>
