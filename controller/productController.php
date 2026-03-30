@@ -37,7 +37,6 @@ if ($action === 'create') {
         $productModel->create($data);
         header("Location: productController.php?action=index");
         exit();
-
     } else {
         $product = null;
         require '../views/admin/admin_product_form.php';
@@ -64,7 +63,6 @@ if ($action === 'edit') {
         $productModel->update($id, $data);
         header("Location: productController.php?action=index");
         exit();
-
     } else {
         $product = $productModel->find($id);
         require '../views/admin/admin_product_form.php';

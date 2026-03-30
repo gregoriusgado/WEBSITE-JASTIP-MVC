@@ -128,6 +128,7 @@ class OrderModel
 {
     $stmt = $this->conn->prepare(
         "SELECT pesanan_paket.nama_paket,
+                pesanan_paket.status,
                 kategori_barang.nama_kategori
         FROM pesanan_paket
         LEFT JOIN kategori_barang
