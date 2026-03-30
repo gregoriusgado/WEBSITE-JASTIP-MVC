@@ -101,7 +101,7 @@ if (!isset($orders)) {
                         </div>
 
                         <div class="order-status proses">
-                            Diproses
+                         <?= htmlspecialchars(ucwords(str_replace('_', ' ', $order['status']))) ?>
                         </div>
 
                         <a href="#" class="btn-detail">Detail</a>
