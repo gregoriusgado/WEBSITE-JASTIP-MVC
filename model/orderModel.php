@@ -134,7 +134,7 @@ class OrderModel
         LEFT JOIN kategori_barang
         ON pesanan_paket.kategori_id = kategori_barang.id
         WHERE pesanan_paket.id_users = ?
-        ORDER BY pesanan_paket.id DESC"
+        ORDER BY pesanan_paket.id DESC LIMIT 3"
     );
 
     $stmt->bind_param("i", $id_users);

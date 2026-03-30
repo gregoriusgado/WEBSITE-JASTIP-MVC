@@ -35,7 +35,7 @@ if (!isset($orders)) {
             <nav class="menu"> -
                 <a class="active">Dashboard</a>
                 <a href="../controller/orderController.php?action=create">Form Pemesanan</a>
-                <a href="../controller/orderController.php?action=index">Riwayat</a>
+                <a href="../controller/orderController.php?action=index">Daftar Pesanan</a>
                 <a href="">Kontak Wilayah</a>
                 <a href="">Tentang Kami</a>
                 <a href="../logout.php">Logout</a>
