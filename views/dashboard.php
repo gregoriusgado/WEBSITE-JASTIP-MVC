@@ -1,130 +1,173 @@
 <?php
+
 if (!isset($orders)) {
     header("Location: ../controller/dashboardController.php");
     exit();
 }
+
+function getStep($status)
+{
+    switch ($status) {
+        case 'diproses':
+            return 1;
+        case 'menuju_gudang':     
+            return 2;
+        case 'sampai_gudang':
+            return 3;
+        case 'diambil':
+            return 4;
+        case 'selesai':
+            return 5;
+        default:
+            return 0;
+    }
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Dashboard</title>
 </head>
 
 <body>
 
-    <!-- validasi admin -->
+    <!-- ADMIN NOTIF -->
     <?php if ($_SESSION['role'] == 'admin'): ?>
         <div class="admin-box">
-            <h1>Hai Admin</h1>
-            <p class="role">Role kamu: <b><?php echo $_SESSION['role']; ?></b></p>
-            <a href="../views/admin/admin_panels.php">Masuk Panel Admin</a><br>
+            <h1>HAI ADMIN 👋</h1>
+            <p>Role Kamu: <b><?= $_SESSION['role']; ?></b></p>
+            <a href="../views/admin/admin_panels.php">Masuk Panel Admin</a>
         </div>
     <?php endif; ?>
 
-    <!-- .....app....-->
+    <!-- WRAPPER UTAMA -->
     <div class="app">
-        <!-- ...sibar -->
-        <aside class="sidebar">
-            <div class="logo">
-                <h2>Paket<span>Kamu</span></h2>
-            </div>
-            <nav class="menu"> -
-                <a class="active">Dashboard</a>
-                <a href="../controller/orderController.php?action=create">Form Pemesanan</a>
-                <a href="../controller/orderController.php?action=index">Daftar Pesanan</a>
-                <a href="">Kontak Wilayah</a>
-                <a href="">Tentang Kami</a>
-                <a href="../logout.php">Logout</a>
-            </nav>
-        </aside>
 
+        <!-- SIDEBAR -->
+         <?php include '../views/partial-sidebar.php'; ?>
 
+        <!-- KONTEN UTAMA -->
+        <div class="main-content">
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
-
-            <!-- tracker header -->
-            <div class="tracker-header">
-                <h2>Pesanan <span>Anda</span></h2>
-                <div class="progress-info">
-                    no-pesanan jastip : <b>xxxxxxxx</b>
-                </div>
-            </div>
-
-            <div class="garis-tracker">
-
-                <div class="step completed">
-                    <div class="circle"></div>
-                    <p>Paket Diproses</p>
-                    <img src="../css/orders.png" alt="">
-                </div>
-
-                <div class="step completed">
-                    <div class="circle"></div>
-                    <p>Paket Menuju Gudang</p>
-                    <img src="../css/truck.png" alt="" class="truck">
-                </div>
-
-                <div class="step completed">
-                    <div class="circle"></div>
-                    <p>Paket Sudah Sampai Gudang</p>
-                    <img src="../css/gudang.png" alt="">
-                </div>
-
-                <div class="step">
-                    <div class="circle"></div>
-                    <p>Ambil Paketmu</p>
-                    <img src="../css/pickup.png" alt="">
-                </div>
-
-                <div class="step">
-                    <div class="circle"></div>
-                    <p>Selesai</p>
-                    <img src="../css/selesai.png" alt="">
-                </div>
-            </div>
-            <div class="order-list">
-
-
+            <div class="page-header">
                 <h3>Pesanan Aktif</h3>
+                <p>Pantau status pengiriman paket kamu di sini</p>
+            </div>
+
+            <!-- DAFTAR ORDER -->
+            <div class="order-list">
 
                 <?php foreach ($orders as $order): ?>
 
-                    <div class="order-item active">
-                        <div class="order-info">
-                            <strong><?= htmlspecialchars($order['nama_paket']) ?></strong>
-                            <span><?= htmlspecialchars($order['nama_kategori']) ?></span>
+                    <?php $currentStep = getStep($order['status']); ?> 
+
+                    <!-- CARD -->
+                    <div class="order-card">
+
+                        <!-- HEADER CARD -->
+                        <div class="order-header">
+                            <div class="order-info">
+                                <strong class="nama-paket"><?= htmlspecialchars($order["nama_paket"]) ?></strong>
+                                <span class="nama-kategori"><?= htmlspecialchars($order["nama_kategori"]) ?></span>
+                            </div>
+                            <div class="order-status status-<?= $order['status'] ?>">
+                                <?= htmlspecialchars(ucwords(str_replace('_', ' ', $order['status']))) ?>
+                            </div>
                         </div>
 
-                        <div class="order-status proses">
-                         <?= htmlspecialchars(ucwords(str_replace('_', ' ', $order['status']))) ?>
-                        </div>
+                        <!-- TRACKER / PROGRESS -->
+                        <div class="garis-tracker">
 
-                        <a href="#" class="btn-detail">Detail</a>
+                            <div class="step <?= $currentStep >= 1 ? 'completed' : '' ?> <?= $currentStep <= 1 ? 'active' : '' ?>">
+                                <div class="circle">
+                                    <?php if ($currentStep >= 1): ?>
+                                        <span>✓</span>
+                                    <?php else: ?>
+                                        <span>1</span>
+                                    <?php endif; ?>
+                                </div>
+                                <img src="../css/orders.png" alt="Diproses">
+                                <p>Diproses</p>
+                            </div>
+
+                            <div class="connector <?= $currentStep >= 2 ? 'completed' : '' ?>"></div>
+
+                            <div class="step <?= $currentStep > 2 ? 'completed' : '' ?> <?= $currentStep == 2 ? 'active' : '' ?>">
+                                <div class="circle">
+                                    <?php if ($currentStep > 2): ?>
+                                        <span>✓</span>
+                                    <?php else: ?>
+                                        <span>2</span>
+                                    <?php endif; ?>
+                                </div>
+                                <img src="../css/truck.png" alt="Dikirim">
+                                <p>Dikirim</p>
+                            </div>
+
+                            <div class="connector <?= $currentStep >= 3 ? 'completed' : '' ?>"></div>
+
+                            <div class="step <?= $currentStep >= 3 ? 'completed' : '' ?> <?= $currentStep == 3 ? 'active' : '' ?>">
+                                <div class="circle">
+                                    <?php if ($currentStep > 3): ?>
+                                        <span>✓</span>
+                                    <?php else: ?>
+                                        <span>3</span>
+                                    <?php endif; ?>
+                                </div>
+                                <img src="../css/gudang.png" alt="Sampai Gudang">
+                                <p>Sampai Gudang</p>
+                            </div>
+
+                            <div class="connector <?= $currentStep >= 4 ? 'completed' : '' ?>"></div>
+
+                            <div class="step <?= $currentStep >= 4 ? 'completed' : '' ?> <?= $currentStep == 4 ? 'active' : '' ?>">
+                                <div class="circle">
+                                    <?php if ($currentStep > 4): ?>
+                                        <span>✓</span>
+                                    <?php else: ?>
+                                        <span>4</span>
+                                    <?php endif; ?>
+                                </div>
+                                <img src="../css/pickup.png" alt="Diambil">
+                                <p>Diambil</p>
+                            </div>
+
+                            <div class="connector <?= $currentStep >= 5 ? 'completed' : '' ?>"></div>
+
+                            <div class="step <?= $currentStep >= 5 ? 'completed' : '' ?> <?= $currentStep == 5 ? 'active' : '' ?>">
+                                <div class="circle">
+                                    <?php if ($currentStep >= 5): ?>
+                                        <span>✓</span>
+                                    <?php else: ?>
+                                        <span>5</span>
+                                    <?php endif; ?>
+                                </div>
+                                <img src="../css/selesai.png" alt="Selesai">
+                                <p>Selesai</p>
+                            </div>
+
+                        </div>
+                      
+
+                        <a href="#" class="btn-detail">Lihat Detail →</a>
+
                     </div>
+                
 
                 <?php endforeach; ?>
 
             </div>
-
+      
 
         </div>
+     
 
-
-
-
-
-
-
-
-
-
+    </div>
+   
 
 </body>
-<!-- <?php require 'partial-footer.php'; ?> -->
-
 </html>

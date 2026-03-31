@@ -7,7 +7,7 @@
 
 <head>
     <title>Daftar Pesanan User</title>
-    <link rel="stylesheet" href="../../css/list_barang.css">
+    <link rel="stylesheet" href="../css/list_barang.css">
 </head>
 
 <body>
