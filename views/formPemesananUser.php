@@ -3,9 +3,10 @@ $isEdit = !empty($order);
 ?>
 <!DOCTYPE html>
 <html>
-
+ 
 <head>
     <title><?= $isEdit ? "Edit" : "Tambah" ?> Produk</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/user_product_form.css">
 </head>
 
@@ -72,6 +73,7 @@ $isEdit = !empty($order);
             </button>
 
             <p><a href="../../controller/orderController.php?action=index">Kembali ke daftar</a></p>
+            <p><a href="../../controller/dashboardController.php?action=index">Kembali ke dashboard</a></p>
         </form>
     </div>
 </body>
