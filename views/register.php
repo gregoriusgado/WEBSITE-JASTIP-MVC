@@ -23,6 +23,7 @@
     <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
 
     <button type="submit">daftar</button>
+    <p>Sudah punya akun? ayo <a href="../views/login.php">login</a></p>
   </form>
 
   <div class="image-box">

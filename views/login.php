@@ -22,7 +22,9 @@
     <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
 
     <button type="submit">Login</button>
+     <p>Belum punya akun? ayo <a href="../views/register.php">daftar</a></p>
   </form>
+ 
 
   <div class="image-box">
     <img src="../css/chibi.png" alt="Ilustrasi Login">

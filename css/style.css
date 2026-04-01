@@ -32,6 +32,9 @@
     .login-container h2{
       margin-bottom: 20px;
     }
+    .login-container p{
+      margin-top: 10px;
+    }
 
     .image-box img { width: 450px; padding-left: 40px; }
 
