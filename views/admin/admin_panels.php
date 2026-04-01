@@ -22,33 +22,13 @@ checkRole(['admin']); // hanya admin boleh
             <li><a href="admin_product_form.php">Form Product</a></li>
             <li><a href="../../controller/productController.php?action=index">List Barang</a></li>
             <li><a href="../dashboard.php">Dashboard Utama</a></li>
-            <li><a href="../../controller/updateStatusController.php?action=index">Reports</a></li>
+            <li><a href="../../controller/updateStatusController.php?action=index">Update Status</a></li>
         </ul>
     </nav>
     <main>
-        <div class="card">
-            <h3>User Management</h3>
-            <p>Manage users, roles, and permissions.</p>
-            <button class="btn">View Users</button>
-        </div>
-        <div class="card">
-            <h3>System Settings</h3>
-            <p>Configure system preferences and options.</p>
-            <button class="btn">Edit Settings</button>
-        </div>
-        <div class="card">
-            <h3>Reports</h3>
-            <p>View analytics and generate reports.</p>
-            <button class="btn">Generate Report</button>
-        </div>
-        <div class="card">
-            <h3>Notifications</h3>
-            <p>Send alerts and manage notifications.</p>
-            <button class="btn">Manage Alerts</button>
-        </div>
-    </main>
+       
     <footer>
-        <p>&copy; 2025 Admin Panel.</p>
+        <!-- <p>&copy; 2025 Admin Panel.</p> -->
     </footer>
  
 

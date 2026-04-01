@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../../css/list_barang.css">
     <title>Status-Pesanan</title>
 </head>
 
@@ -11,6 +12,10 @@
 
     <h1>DAFTAR PESANAN USER</h1>
 
+    <p>
+    <a href="../views/admin/admin_panels.php">Kembali ke Admin Panel</a>
+    </p>
+    
     <br><br>
 
     <table border="1" cellpadding="4" cellspacing="0">

@@ -55,7 +55,7 @@ function getStep($status)
 
             <div class="page-header">
                 <h3>Pesanan Aktif</h3>
-                <p>Pantau status pengiriman paket kamu di sini</p>
+                <p>Pantau 3 status pengiriman paket terbaru kamu di sini</p>
             </div>
 
             <!-- DAFTAR ORDER -->
@@ -84,10 +84,8 @@ function getStep($status)
 
                             <div class="step <?= $currentStep >= 1 ? 'completed' : '' ?> <?= $currentStep <= 1 ? 'active' : '' ?>">
                                 <div class="circle">
-                                    <?php if ($currentStep >= 1): ?>
-                                        <span>✓</span>
-                                    <?php else: ?>
-                                        <span>1</span>
+                                    <?php if ($currentStep >= 1): ?><span>✓</span>
+                                    <?php else: ?><span>1</span>
                                     <?php endif; ?>
                                 </div>
                                 <img src="../css/orders.png" alt="Diproses">
@@ -153,7 +151,12 @@ function getStep($status)
                         </div>
                       
 
-                        <a href="#" class="btn-detail">Lihat Detail →</a>
+                        <a class="btn-detail" onclick="toggleDetail(<?= $order['id'] ?>)">
+                            Lihat Detail →
+                        </a>
+                        <div id="detail-<?=  $order['id'] ?>" style="display: none; margin-top:10px;"> 
+                             <p>Waktu Pemesanan : <?=  htmlspecialchars($order['created_at']) ?></p>               
+                        </div>
 
                     </div>
                 
@@ -170,4 +173,15 @@ function getStep($status)
    
 
 </body>
+<script>
+    function toggleDetail(id) {
+        const detail = document.getElementById("detail-"+ id);
+
+        if (detail.style.display === "none") {
+            detail.style.display = "block"
+        } else {
+            detail.style.display = "none"
+        }
+    }
+</script>
 </html>

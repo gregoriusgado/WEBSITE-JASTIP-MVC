@@ -20,8 +20,8 @@ function validateOrder($post)
     $deskripsi = trim($post['deskripsi_paket'] ?? '');
     if ($nama === '') {
         $errors[] = "Nama paket wajib diisi";
-    } elseif (strlen($nama) > 10) {
-        $errors[] = "Nama paket maksimal 10 karakter";
+    } elseif (strlen($nama) > 20) {
+        $errors[] = "Nama paket maksimal 20 karakter";
     }
     if ($kategori === '') {
         $errors[] = "Kategori wajib dipilih";
@@ -68,8 +68,8 @@ if ($action === 'create') {
         $data = [
             'id_users' => $_SESSION['user_id'],
             'kategori_id' => $_POST['kategori_id'],
-            'nama_paket' => substr(trim($_POST['nama_paket']), 0, 40),
-            'deskripsi_paket' => substr(trim($_POST['deskripsi_paket']), 0, 300),
+            'nama_paket' => substr(trim($_POST['nama_paket']), 0, 20),
+            'deskripsi_paket' => substr(trim($_POST['deskripsi_paket']), 0, 50),
             'no_wa' => trim($_POST['no_wa']),
             'packing_khusus' => 'tidak',
             'status' => 'diproses'
