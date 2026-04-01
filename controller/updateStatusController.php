@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
 
     $modelUpdate->update($id, $status);
+    
 
     // balik ke halaman sebelumnya
     header("Location: updateStatusController.php?action=index");
@@ -25,8 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 /* =====================
    INDEX
 ===================== */
-if ($action ===  'index') {
-    $update = $modelUpdate->getALL();
+if ($action === 'index') {
+     $keyword = $_GET['keyword'] ?? '';
+    
+
+    if (!empty($keyword)) {
+        $update= $modelUpdate->search($keyword)->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $update= $modelUpdate->getALL();
+    }
     require '../views/admin/status_pesanan.php';
     exit();
 }

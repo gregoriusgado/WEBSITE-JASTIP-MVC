@@ -17,6 +17,11 @@
     <a href="../controller/orderController.php?action=create">
         Tambah Pesanan
     </a>
+    <form method="GET" action="../controller/orderController.php">
+        <input type="hidden" name="action" value="index">
+        <input type="text" name="keyword" placeholder="Cari paket...">
+        <button type="submit">Cari</button>
+    </form>
 
     <br><br>
 
