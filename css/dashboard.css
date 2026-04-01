@@ -8,6 +8,14 @@
 .body{
     background-color: #ffff;
 }
+.admin-box {
+    background-color: #a2abbd;
+    border-radius: 16px;
+    padding: 24px;
+    width: 250px;
+    margin: 0 auto;
+
+}
 .app {
     display: flex;
     min-height: 100vh;
@@ -18,12 +26,20 @@
     padding: 20px;
     border-radius: 0 10px 0 0 ;
     margin-top: 50px;
+    box-shadow: 0 4px 15px rgba(0, 88, 110, 0.1);
+    border-left: 5px solid #00586e;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.sidebar:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 88, 110, 1.15);
 }
 .sidebar a {
     position: relative;
     display: block;
     color: #ffffff;
     text-decoration: none;
+    font-weight: bold;
     font-size: 19px;
     margin: 30px;
     transition: color 0.3s ease;
@@ -62,23 +78,25 @@
     margin-bottom: 45px;
 }
 .page-header h3 {
-    margin-top: 35px;
+    margin-top: 55px;
+    margin-left: 20px;
     font-size: 24px;
     font-weight: bold;
     color: #00586e;
 }
 .page-header p {
     font-size: 14px;
+    margin-left: 20px;
     color: #888;
     margin-top: 4px;
 }
 .order-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 }
 .order-card {
-    background-color: #ffffff;
+    background-color: #EAA043;
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 4px 15px rgba(0, 88, 110, 0.1);
@@ -169,7 +187,7 @@
 }
 .step p {
     font-size: 11px;
-    color:  #EAA043;
+    color:  #ffffff;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -182,6 +200,8 @@
 .step img {
     width: 28px;
     height: 28px;
+    border-radius: 5px;
+    background: #ffffff;
     object-fit: contain;
 }
 
@@ -206,8 +226,8 @@
 }
 .step.active .circle {
     background-color: #ffffff;
-    border-color: #EAA043;
-    color: #EAA043;
+    border-color: #007a94;
+    color: #007a94;
     box-shadow: 0 0 0 4px rgba(234, 160, 67, 0.2);
 }
 
