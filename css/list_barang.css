@@ -11,6 +11,12 @@ body {
     padding: 30px;
     color: #333;
 }
+.search{
+  padding:20px;
+}
+.search a {
+    padding: 20px;
+}
 
 /* ===== TITLE ===== */
 h1 {

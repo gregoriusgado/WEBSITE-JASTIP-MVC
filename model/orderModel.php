@@ -145,4 +145,29 @@ class OrderModel
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
 }
+ public function search($id_users,$keyword) {
+   // $keyword = "%$keyword%";
+
+   $stmt = $this->conn->prepare (
+      " SELECT 
+        pesanan_paket.id,
+        pesanan_paket.nama_paket,
+        pesanan_paket.deskripsi_paket,
+        pesanan_paket.no_wa,
+        kategori_barang.packing_khusus,
+        kategori_barang.nama_kategori
+        FROM pesanan_paket 
+        LEFT JOIN kategori_barang
+        ON pesanan_paket.kategori_id = kategori_barang.id
+        LEFT JOIN users ON pesanan_paket.id_users = users.id
+        WHERE pesanan_paket.id_users = ? AND pesanan_paket.nama_paket LIKE ? "
+   );
+    $search = "%" . $keyword . "%";
+    $stmt->bind_param("is", $id_users, $search);
+    $stmt->execute();
+
+    return $stmt->get_result();
+
+ }
+
 }

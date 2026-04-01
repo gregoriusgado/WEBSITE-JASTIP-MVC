@@ -15,6 +15,15 @@
     <p>
     <a href="../views/admin/admin_panels.php">Kembali ke Admin Panel</a>
     </p>
+     <form class="search" method="GET" action="../controller/updateStatusController.php">
+        <input type="hidden" name="action" value="index">
+        <input type="text" name="keyword" placeholder="Cari nama..">
+        <button type="submit">Cari</button>
+        <a href="../controller/updateStatusController.php?action=index">
+        Reset
+    </a>
+    </form>
+
     
     <br><br>
 

@@ -45,6 +45,14 @@ $action = $_GET['action'] ?? 'index';
 if ($action === 'index') {
     $id_users = $_SESSION['user_id'];
     $order = $orderModel->getByUser($id_users);
+    $keyword = $_GET['keyword'] ?? '';
+
+    if (!empty($keyword)) {
+        $order = $orderModel->search($id_users,$keyword)->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $order = $orderModel->getByUser($id_users);
+    }
+
     require '../views/list_paket_users.php';
     exit();
 }
