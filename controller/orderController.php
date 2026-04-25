@@ -61,6 +61,8 @@ if ($action === 'index') {
    CREATE
 ===================== */
 $kategoris = $orderModel->getKategori();
+
+
 if ($action === 'create') {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

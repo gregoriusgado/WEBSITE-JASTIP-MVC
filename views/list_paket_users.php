@@ -75,8 +75,6 @@
                                 Edit
                             </a>
 
-                            |
-
                             <a href="../controller/orderController.php?action=delete&id=<?= $o['id'] ?>"
                                 onclick="return confirm('Hapus pesanan ini?')">
                                 Hapus

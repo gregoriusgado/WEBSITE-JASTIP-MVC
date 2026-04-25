@@ -5,7 +5,7 @@ $isEdit = !empty($order);
 <html>
  
 <head>
-    <title><?= $isEdit ? "Edit" : "Tambah" ?> Produk</title>
+    <title><?= $isEdit ? "Edit" : "Tambah" ?>Produk</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/user_product_form.css">
 </head>
